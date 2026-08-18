@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PODOLA — coming soon</title>
+<title>Podola Peas — Coming Soon</title>
+
+<!-- Favicon: inline pea SVG, no extra file needed -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2316301F'/%3E%3Ccircle cx='50' cy='50' r='34' fill='%23A6D07C'/%3E%3Ccircle cx='38' cy='38' r='12' fill='%23D3EDB0' opacity='0.6'/%3E%3C/svg%3E">
+
+<!-- Search + social metadata -->
+<meta name="description" content="Podola Peas is a snack food company launching soon. Sign up to be the first to know.">
+<meta property="og:site_name" content="Podola Peas">
+<meta property="og:title" content="Podola Peas — Coming Soon">
+<meta property="og:description" content="Podola Peas is a snack food company launching soon. Sign up to be the first to know.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -67,7 +77,6 @@
     overflow: visible;
   }
 
-  /* entrance animation — plays once on load */
   .pea-enter {
     transform-origin: center;
     transform-box: fill-box;
@@ -84,7 +93,6 @@
     100% { opacity: 1; transform: scale(1) translateY(0); }
   }
 
-  /* continuous slow pulse — layered on a separate transform so it doesn't fight the entrance */
   .pea-pulse {
     transform-origin: center;
     transform-box: fill-box;
@@ -98,8 +106,6 @@
     0%, 100% { transform: scale(1); }
     50%      { transform: scale(1.14); }
   }
-
-
 
   .shell {
     stroke-dasharray: 400;
