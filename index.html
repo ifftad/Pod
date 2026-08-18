@@ -127,6 +127,39 @@
       transform: none !important;
     }
   }
+
+  .contact {
+    position: fixed;
+    bottom: 1.8rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    opacity: 0;
+    animation: rise .7s ease-out 1.15s forwards;
+  }
+
+  .contact a {
+    color: var(--pea);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0.7;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: opacity .2s ease, border-color .2s ease;
+  }
+
+  .contact a:hover,
+  .contact a:focus-visible {
+    opacity: 1;
+    border-color: var(--pea);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact { animation: none !important; opacity: 1 !important; }
+  }
 </style>
 </head>
 <body>
@@ -166,6 +199,9 @@
         <h1>PODOLA</h1>
         <p class="tag">Coming soon</p>
       </div>
+    </div>
+    <div class="contact">
+      <a href="mailto:andrew@podolapeas.com">Contact — andrew@podolapeas.com</a>
     </div>
   </div>
 </body>
