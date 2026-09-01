@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Podola — crispy coated peas</title>
 <meta name="description" content="Podola. Crispy coated peas, coming in hot. Get in touch: andrew@podolapeas.com">
-<meta name="theme-color" content="#C9E85C">
+<meta name="theme-color" content="#0B2A16">
 <meta property="og:title" content="Podola">
 <meta property="og:description" content="Crispy coated peas, coming in hot.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://podolapeas.com">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23C9E85C'/%3E%3Ccircle cx='36' cy='58' r='22' fill='%238FC742' stroke='%23113B22' stroke-width='7'/%3E%3Ccircle cx='64' cy='58' r='22' fill='%238FC742' stroke='%23113B22' stroke-width='7'/%3E%3Ccircle cx='50' cy='40' r='24' fill='%23A9DB55' stroke='%23113B22' stroke-width='7'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230B2A16'/%3E%3Ccircle cx='36' cy='58' r='22' fill='%238FC742' stroke='%23F5FAE6' stroke-width='7'/%3E%3Ccircle cx='64' cy='58' r='22' fill='%238FC742' stroke='%23F5FAE6' stroke-width='7'/%3E%3Ccircle cx='50' cy='40' r='24' fill='%23A9DB55' stroke='%23F5FAE6' stroke-width='7'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +19,10 @@
 <style>
 :root{
   --lime:#C9E85C;
-  --lime-deep:#B7DB44;
-  --ink:#113B22;
+  --deep:#0B2A16;
+  --burst:#1C5E31;
+  --cream:#F5FAE6;
+  --ink:#0B2A16;
   --pea-lite:#E9F7B4;
   --pea:#8FC742;
   --pea-dark:#5E9128;
@@ -32,8 +34,8 @@
 html,body{height:100%}
 
 body{
-  background:var(--lime);
-  color:var(--ink);
+  background:var(--deep);
+  color:var(--cream);
   font-family:'Archivo',system-ui,-apple-system,sans-serif;
   -webkit-font-smoothing:antialiased;
   overflow:hidden;
@@ -50,7 +52,7 @@ body{
   align-items:center;
   justify-content:center;
   gap:clamp(14px,3.5vw,30px);
-  padding:clamp(24px,6vw,60px) 20px;
+  padding:clamp(24px,6vw,60px) 28px;
   position:relative;
   isolation:isolate;
 }
@@ -64,10 +66,10 @@ body{
   aspect-ratio:1;
   translate:-50% -50%;
   z-index:-1;
-  opacity:.5;
+  opacity:1;
   animation:spin 90s linear infinite;
 }
-.burst path{fill:var(--lime-deep)}
+.burst path{fill:var(--burst)}
 
 @keyframes spin{to{rotate:360deg}}
 
@@ -84,7 +86,7 @@ body{
 
 .pod{
   fill:none;
-  stroke:var(--ink);
+  stroke:var(--cream);
   stroke-width:11;
   stroke-linecap:round;
   stroke-dasharray:640;
@@ -129,8 +131,9 @@ body{
   line-height:.8;
   text-transform:uppercase;
   paint-order:stroke fill;
-  -webkit-text-stroke:5px #fff;
-  text-shadow:0 3px 0 rgba(17,59,34,.12);
+  color:#8FC742;
+  -webkit-text-stroke:5px var(--cream);
+  text-shadow:0 3px 0 rgba(0,0,0,.28);
   opacity:0;
   animation:rise .55s cubic-bezier(.2,.9,.3,1) .85s forwards;
 }
@@ -139,11 +142,11 @@ body{
   font-size:clamp(1.05rem,4.4vw,1.5rem);
   font-variation-settings:'wdth' 100,'wght' 650;
   letter-spacing:-.005em;
-  color:var(--ink);
+  color:var(--cream);
   text-align:center;
   paint-order:stroke fill;
-  -webkit-text-stroke:2px #fff;
-  text-shadow:0 2px 0 rgba(17,59,34,.14);
+  -webkit-text-stroke:2px var(--deep);
+  text-shadow:0 2px 0 rgba(0,0,0,.3);
   opacity:0;
   animation:rise .5s ease-out 1.05s forwards;
 }
@@ -158,8 +161,8 @@ body{
 
 .band{
   display:block;
-  background:var(--ink);
-  color:var(--lime);
+  background:var(--lime);
+  color:var(--ink);
   text-decoration:none;
   padding:clamp(14px,3.4vw,20px) 0;
   overflow:hidden;
@@ -213,15 +216,15 @@ body{
   <svg class="logo" id="logo" viewBox="0 0 400 250" role="img" aria-label="Podola">
     <path class="pod" d="M58 196 C40 74 138 22 214 38 C304 57 366 124 340 208"/>
     <g class="pea pea--l">
-      <circle cx="118" cy="168" r="50" fill="var(--pea)" stroke="var(--ink)" stroke-width="11"/>
+      <circle cx="118" cy="168" r="50" fill="var(--pea)" stroke="var(--cream)" stroke-width="11"/>
       <ellipse cx="100" cy="148" rx="15" ry="11" fill="var(--pea-lite)" opacity=".85" transform="rotate(-32 100 148)"/>
     </g>
     <g class="pea pea--r">
-      <circle cx="286" cy="176" r="44" fill="var(--pea)" stroke="var(--ink)" stroke-width="11"/>
+      <circle cx="286" cy="176" r="44" fill="var(--pea)" stroke="var(--cream)" stroke-width="11"/>
       <ellipse cx="271" cy="158" rx="13" ry="9" fill="var(--pea-lite)" opacity=".85" transform="rotate(-32 271 158)"/>
     </g>
     <g class="pea pea--c">
-      <circle cx="202" cy="144" r="60" fill="var(--pea)" stroke="var(--ink)" stroke-width="11"/>
+      <circle cx="202" cy="144" r="60" fill="var(--pea)" stroke="var(--cream)" stroke-width="11"/>
       <ellipse cx="180" cy="120" rx="18" ry="13" fill="var(--pea-lite)" opacity=".85" transform="rotate(-32 180 120)"/>
     </g>
   </svg>
