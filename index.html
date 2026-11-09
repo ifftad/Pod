@@ -68,7 +68,10 @@
      needed (a check would wrongly hide it on touchscreen laptops). PNG is the backup image. */
   html,body,a,button,.tab,.email{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2212.5%22%20fill%3D%22%23a0bf4e%22%20stroke%3D%22%23212f17%22%20stroke-width%3D%222%22/%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2210.5%22%20rx%3D%223.6%22%20ry%3D%222.4%22%20fill%3D%22%23f5e9e5%22%20transform%3D%22rotate%28-30%2011.5%2010.5%29%22/%3E%3C/svg%3E") 16 16, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC70lEQVR4nGNgGAUkAjldfkEFPVEPRX3RHEU90RYg3SyvK5qtqCPmqqQkyE8re5nk9USDFfTF9ynqi/1W1Bf/jx0D5fTE9ijoigUA9TBSxWZ5HTEroKGXYJYoG0r8s/FV+h+crvM/scLof0K50f+gNJ3/1kAxkBxMnYK+2HlZHRETyizXE6+G+VjfXvZ/Tov5/6mbPf8v2O+HFU/d5Pk/q8kcpPYfLEQU9EXLybNcV3wS1Df/YosN/s/e6YPTYnQ8e6f3/5giA7BeaGj0kWQ5UEMdSKOKscS/ysm2cIOXHoz4v+Vk4f+Vh+OJcghIr7IRNFr0xEqJslxRV9QO6IA/INdXT7UDG7TicOz/67c2/v/y4vH/ry+fgunDF3qJckRpvzU4JEBmyhmIWROynxGUeEAuji02BBuw8nDc/1ePL4EtRsZPHhwnOkpAUQiOCj2xswz4cgcw0UWCFBo4yMLj/MrN1RiWg/CVG6uIdsCsHd4gM8FRIa8vFoQ7+PXEdoMUZTWZwTU/fXgSw/JXjy+Co4VYB4AwyExogtyJ1XJQKQaKJ2VD8X/TtiCy2pELfcA4fwKP++u31pNsOTiLArOvkgEoV4j9ElEX4cVwgIKOiAPIhbb+yhiaVx1J+L/heA44F5BqMTIGmQ2yQ05f1AYz/kHlOVAyJFOXIkvwYZDZ0MSYiRn/wEoFJAkqXmnlAGjh9B9r6TjgDhjwKMCXCKmF8SZCXNmQWphgNgSnAywFEbUwwYIIHA16IhGwonjOLuKrX0IYVD0jFcWBOB3AgFQZxZUYUs0BoIqNqMoIHA1YqmNKcBmJ1TEkKnA0SEjFZDVI4I7QE5+IaJIZkpQmQFU5tA0Aa5L1kmQ5DADbB1WwRqmBI6RROg1foxQol92M1ijVFSsjy3K4I3A0y0MydP/HFBqAMaiJTpNmORJgArVkQJ0OAh2TX6CyREFX3J+BWh0TdKBgICAAtMgN1DUDBS8Ig+oROT1xZyEVIT6aWDqsAQCrm13vAfFFagAAAABJRU5ErkJggg==") 16 16, auto}
 
-  .hero-logo{width:min(560px,92%)}  .status{
+  .hero-logo{width:min(560px,92%)}
+  /* hover a hole with the mouse: a pea sits in it; after you leave it stays 1s, then fades over .5s */
+  .hole-pea{opacity:0;transition:opacity .5s ease;pointer-events:none}
+  .hole-pea.on{opacity:1;transition:none}  .status{
     margin-top:clamp(28px,5vw,44px);
     font-weight:700;font-size:14px;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;
   }
@@ -153,6 +156,31 @@
     }
     setCursor(); window.addEventListener('resize',setCursor);
     window.addEventListener('hashchange',function(){setTimeout(setCursor,0)});
+
+    /* Hover a hole: a pea (same look as the cursor) locks into it. When the mouse leaves
+       that hole, the pea stays 1 second, then fades back to the background over 0.5s. */
+    var NS='http://www.w3.org/2000/svg', HOLD=1000, WIGGLE_PX=4;
+    var peas=G.holes.map(function(h){
+      var cx=h[0], cy=h[1], r=h[2], sw=Math.max(r/8,0.5);
+      var g=document.createElementNS(NS,'g'); g.setAttribute('class','hole-pea');
+      g.innerHTML='<circle cx="'+cx+'" cy="'+cy+'" r="'+(r-sw/2)+'" fill="'+PEA+'" stroke="'+FOREST+'" stroke-width="'+sw+'"/>'+
+        '<ellipse cx="'+(cx-r*0.32)+'" cy="'+(cy-r*0.38)+'" rx="'+(r*0.26)+'" ry="'+(r*0.17)+'" fill="'+SHINE+'" transform="rotate(-30 '+(cx-r*0.32)+' '+(cy-r*0.38)+')"/>';
+      svg.appendChild(g);
+      return {g:g, over:false, timer:null};
+    });
+    function enter(p){ clearTimeout(p.timer); p.over=true; p.g.classList.add('on'); }
+    function leave(p){ if(!p.over) return; p.over=false;
+      p.timer=setTimeout(function(){ p.g.classList.remove('on'); }, HOLD); }
+    svg.addEventListener('pointermove',function(e){
+      if(e.pointerType!=='mouse') return;
+      var pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
+      var m=svg.getScreenCTM(); if(!m) return;
+      var p=pt.matrixTransform(m.inverse()), wiggle=WIGGLE_PX/m.a;   // a few screen pixels of slack
+      G.holes.forEach(function(h,i){
+        if(Math.hypot(p.x-h[0],p.y-h[1])<=h[2]+wiggle) enter(peas[i]); else leave(peas[i]);
+      });
+    });
+    svg.addEventListener('pointerleave',function(){ peas.forEach(leave); });
   })();
 </script>
 </body>
