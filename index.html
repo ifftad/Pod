@@ -3,256 +3,135 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>PODOLA — Coming Soon</title>
-<meta name="description" content="PODOLA. Crunchy peas. Big flavor. Coming soon.">
-<meta name="theme-color" content="#0d2113">
-
-<!-- Open Graph -->
-<meta property="og:title" content="PODOLA — Coming Soon">
-<meta property="og:description" content="Crunchy peas. Big flavor.">
+<title>PODOLA</title>
+<meta name="description" content="PODOLA. Coming soon.">
+<meta name="theme-color" content="#f5e9e5">
+<meta property="og:title" content="PODOLA">
+<meta property="og:description" content="Coming soon.">
 <meta property="og:type" content="website">
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%23a5d977'/><circle cx='36' cy='36' r='13' fill='%23d6efb8'/></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2087.82%2087.82%22%3E%3Cg%20fill%3D%22%23212f17%22%3E%3Cpath%20d%3D%22M77.95%2087.82L9.87%2087.82C4.42%2087.82%200%2083.4%200%2077.95L0%209.87C0%204.42%204.42%200%209.87%200L77.95%200C83.4%200%2087.82%204.42%2087.82%209.87L87.82%2077.95C87.82%2083.4%2083.4%2087.82%2077.95%2087.82%22/%3E%3C/g%3E%3Cg%20fill%3D%22%23a0bf4e%22%20transform%3D%22translate%2825.28%2013.9%29%22%3E%3Cpath%20d%3D%22M21.07%2032.86C17.38%2032.86%2014.39%2029.87%2014.39%2026.18C14.39%2022.49%2017.38%2019.5%2021.07%2019.5C24.76%2019.5%2027.74%2022.49%2027.74%2026.18C27.74%2029.87%2024.76%2032.86%2021.07%2032.86ZM0.03%209.61L0%2052.09L14.84%2052.09L14.84%2043.7C14.84%2043.7%2037.25%2046.1%2037.26%2027C37.27%200%200.03%209.61%200.03%209.61%22/%3E%3C/g%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:CRSV,wght@0.5,200;0.5,700;0.5,900&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg-core:#1c3f22;
-    --bg-mid:#143019;
-    --bg-edge:#0a1b0f;
-    --pea-light:#d8f0b4;
-    --pea-mid:#a9db7c;
-    --pea-deep:#6fae4d;
-    --ring:#4c7f43;
-    --type-hero:#9ecb5f;
-    --type-sub:#5f9040;
-    --type-contact:#7cb44e;
+    --forest:#212f17;
+    --pea:#a0bf4e;
+    --blush:#f5e9e5;
+    --white:#ffffff;
+    /* Geologica Auto = Geologica with its Cursive axis at 0.5 ("Auto"), loaded above */
+    --font:'Geologica Auto','Geologica',system-ui,sans-serif;
   }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-
-  html,body{height:100%;}
-
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
   body{
-    background:
-      radial-gradient(120% 85% at 50% 44%, var(--bg-core) 0%, var(--bg-mid) 42%, var(--bg-edge) 100%),
-      var(--bg-edge);
-    color:var(--type-hero);
-    font-family:'Poppins','Nunito Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    min-height:100svh;
-    padding:calc(2rem + env(safe-area-inset-top)) 1.5rem calc(2rem + env(safe-area-inset-bottom));
-    overflow:hidden;
+    background:var(--blush);
+    color:var(--forest);
+    font-family:var(--font);
+    font-weight:200;
+    font-size:18px;
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
-  }
-
-  /* soft glow behind the pod */
-  body::before{
-    content:"";
-    position:fixed;
-    left:50%;
-    top:42%;
-    width:min(720px,120vw);
-    aspect-ratio:1;
-    transform:translate(-50%,-50%);
-    background:radial-gradient(circle, rgba(124,180,78,.16) 0%, rgba(124,180,78,0) 62%);
-    pointer-events:none;
-  }
-
-  .stage{
-    position:relative;
+    min-height:100svh;
     display:flex;
     flex-direction:column;
-    align-items:center;
-    flex:1;
-    justify-content:center;
-    gap:clamp(2rem,7vh,3.5rem);
+  }
+  a{color:inherit}
+  svg{display:block;width:100%;height:auto}
+
+  header{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:20px clamp(16px,4vw,48px);
+    max-width:1200px;width:100%;margin:0 auto;
+  }
+  .brand{display:block;width:clamp(110px,16vw,150px)}
+  .tabs{display:flex;gap:6px;background:var(--white);padding:5px;border-radius:999px}
+  .tab{
+    font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;
+    text-decoration:none;color:var(--forest);
+    padding:9px 18px;border-radius:999px;transition:background .2s,color .2s;
+  }
+  .tab:hover{background:var(--blush)}
+  .tab[aria-current="page"]{background:var(--forest);color:var(--pea)}
+  .tab:focus-visible{outline:3px solid var(--forest);outline-offset:2px}
+
+  main{flex:1;display:flex}
+  .panel{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:48px 16px 64px;
+  }
+  .js .panel[hidden]{display:none}
+
+  /* cartoon pea cursor on mouse/trackpad devices (brand colors); phones are unaffected */
+  @media (hover:hover) and (pointer:fine){
+    html,body,a,button,.tab,.email{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2212.5%22%20fill%3D%22%23a0bf4e%22%20stroke%3D%22%23212f17%22%20stroke-width%3D%222%22/%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2210.5%22%20rx%3D%223.6%22%20ry%3D%222.4%22%20fill%3D%22%23f5e9e5%22%20transform%3D%22rotate%28-30%2011.5%2010.5%29%22/%3E%3Ccircle%20cx%3D%2212.5%22%20cy%3D%2216%22%20r%3D%221.6%22%20fill%3D%22%23212f17%22/%3E%3Ccircle%20cx%3D%2219.5%22%20cy%3D%2216%22%20r%3D%221.6%22%20fill%3D%22%23212f17%22/%3E%3Cpath%20d%3D%22M12.5%2020.2q3.5%203%207%200%22%20fill%3D%22none%22%20stroke%3D%22%23212f17%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2219.6%22%20r%3D%221.3%22%20fill%3D%22%23f0b491%22/%3E%3Ccircle%20cx%3D%2222%22%20cy%3D%2219.6%22%20r%3D%221.3%22%20fill%3D%22%23f0b491%22/%3E%3C/svg%3E") 16 16, auto}
   }
 
-  .pod{
-    width:min(340px,72vw);
-    height:auto;
-    overflow:visible;
-    display:block;
-  }
-
-  .wordmark{
-    font-weight:800;
-    font-size:clamp(3.1rem,15vw,5.6rem);
-    line-height:.9;
-    letter-spacing:.01em;
-    color:var(--type-hero);
-    text-align:center;
-  }
-
+  .hero-logo{width:min(560px,92%)}
   .status{
-    display:block;
-    margin-top:clamp(.9rem,3vw,1.35rem);
-    font-weight:600;
-    font-size:clamp(.72rem,3.1vw,.95rem);
-    letter-spacing:.42em;
-    text-indent:.42em;
-    color:var(--type-sub);
-    text-align:center;
+    margin-top:clamp(28px,5vw,44px);
+    font-weight:700;font-size:14px;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;
   }
 
-  .contact{
-    font-weight:500;
-    font-size:clamp(.68rem,3vw,.9rem);
-    letter-spacing:.16em;
-    color:var(--type-contact);
-    text-align:center;
-    user-select:text;
-    -webkit-user-select:text;
-    padding-top:2rem;
+  h1.contact-title{font-weight:900;font-size:clamp(40px,7vw,72px);line-height:1;text-transform:uppercase}
+  .contact p{margin-top:16px;font-size:clamp(18px,2vw,21px)}
+  .email{
+    display:inline-block;margin-top:28px;
+    font-weight:700;font-size:clamp(16px,2.2vw,20px);text-decoration:none;
+    background:var(--forest);color:var(--pea);
+    padding:14px 26px;border-radius:999px;
+    cursor:text;user-select:all;
   }
 
-  /* ---------- motion ---------- */
+  footer{text-align:center;padding:20px 16px 28px;font-size:14px}
 
-  .pea{ transform-box:fill-box; transform-origin:50% 100%; }
-  .pea-a{ animation:bob 3.4s ease-in-out infinite; }
-  .pea-b{ animation:bob 3.4s ease-in-out .28s infinite; }
-  .pea-c{ animation:bob 3.4s ease-in-out .56s infinite; }
-
-  @keyframes bob{
-    0%,100%{ transform:translateY(0) scale(1,1); }
-    45%   { transform:translateY(-7px) scale(.995,1.008); }
-    72%   { transform:translateY(1.5px) scale(1.008,.994); }
-  }
-
-  .ring{
-    transform-box:fill-box;
-    transform-origin:50% 50%;
-    animation:sway 9s ease-in-out infinite;
-  }
-  @keyframes sway{
-    0%,100%{ transform:rotate(-1.4deg) scale(1); opacity:.78; }
-    50%    { transform:rotate(1.4deg) scale(1.025); opacity:1; }
-  }
-
-  .gleam{ animation:sweep 6.5s ease-in-out infinite; }
-  @keyframes sweep{
-    0%,55%  { transform:translateX(30px); }
-    85%,100%{ transform:translateX(340px); }
-  }
-
-  .spark{ animation:twinkle 5s ease-in-out infinite; }
-  .spark-2{ animation-delay:1.6s; }
-  @keyframes twinkle{
-    0%,100%{ opacity:.55; }
-    50%    { opacity:.95; }
-  }
-
-  @media (prefers-reduced-motion:reduce){
-    .pea-a,.pea-b,.pea-c,.ring,.gleam,.spark{ animation:none; }
-    .ring{ opacity:.85; }
-    .gleam{ display:none; }
+  @media (max-width:420px){
+    .tab{padding:8px 13px;font-size:13px}
   }
 </style>
 </head>
 <body>
+<script>document.documentElement.className='js'</script>
 
-  <main class="stage">
+<header>
+  <a class="brand" href="#home" aria-label="PODOLA home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 265.82 64.13" fill="#212f17" aria-hidden="true"><path d="M22.7 35.51C18.73 35.51 15.51 32.28 15.51 28.31C15.51 24.34 18.73 21.12 22.7 21.12C26.68 21.12 29.9 24.34 29.9 28.31C29.9 32.28 26.68 35.51 22.7 35.51ZM0.03 10.45L0 56.23L15.99 56.23L15.99 47.2C15.99 47.2 40.15 49.78 40.15 29.2C40.17 0.1 0.03 10.45 0.03 10.45"/><path d="M66.84 39.67C62.86 39.67 59.64 36.45 59.64 32.48C59.64 28.5 62.86 25.28 66.84 25.28C70.81 25.28 74.03 28.5 74.03 32.48C74.03 36.45 70.81 39.67 66.84 39.67ZM66.84 8.69C53.7 8.69 43.05 19.34 43.05 32.48C43.05 45.61 53.7 56.26 66.84 56.26C79.97 56.26 90.62 45.61 90.62 32.48C90.62 19.34 79.97 8.69 66.84 8.69"/><path d="M113.42 39.67C109.45 39.67 106.22 36.45 106.22 32.48C106.22 28.5 109.45 25.28 113.42 25.28C117.39 25.28 120.61 28.5 120.61 32.48C120.61 36.45 117.39 39.67 113.42 39.67ZM93.52 10.39L93.52 54.09C93.52 54.09 135.2 64.13 135.2 31.36C135.2 0 93.52 10.39 93.52 10.39"/><path d="M162.11 39.64C158.13 39.64 154.91 36.42 154.91 32.45C154.91 28.47 158.13 25.25 162.11 25.25C166.08 25.25 169.3 28.47 169.3 32.45C169.3 36.42 166.08 39.64 162.11 39.64ZM162.11 8.66C148.97 8.66 138.32 19.31 138.32 32.45C138.32 45.58 148.97 56.23 162.11 56.23C175.24 56.23 185.89 45.58 185.89 32.45C185.89 19.31 175.24 8.66 162.11 8.66"/><path d="M204.92 8.66L188.93 8.66L188.93 56.15L217.66 56.15L217.66 39.73L212.26 39.73C208.21 39.73 204.92 36.44 204.92 32.39L204.92 8.66"/><path d="M243.65 39.64C239.68 39.64 236.45 36.42 236.45 32.45C236.45 28.47 239.68 25.25 243.65 25.25C247.62 25.25 250.84 28.47 250.84 32.45C250.84 36.42 247.62 39.64 243.65 39.64ZM251.18 8.66L236.39 8.66L221.48 56.15L241.29 56.15L243.8 47.44L246.06 56.23L265.82 56.15L251.18 8.66"/></svg></a>
+  <nav class="tabs" aria-label="Main">
+    <a class="tab" href="#home" data-tab="home">Home</a>
+    <a class="tab" href="#contact" data-tab="contact">Contact</a>
+  </nav>
+</header>
 
-    <svg class="pod" viewBox="0 0 400 250" role="img" aria-label="Three peas inside an open pod outline">
-      <defs>
-        <radialGradient id="peaFill" cx="33%" cy="28%" r="78%">
-          <stop offset="0%"   stop-color="#e6f8cb"/>
-          <stop offset="34%"  stop-color="var(--pea-light)"/>
-          <stop offset="72%"  stop-color="var(--pea-mid)"/>
-          <stop offset="100%" stop-color="var(--pea-deep)"/>
-        </radialGradient>
+<main>
+  <section class="panel" id="home" data-panel="home" aria-label="Home">
+    <h1 class="hero-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173.72 46.71" fill="#212f17" role="img" aria-label="PODOLA"><path d="M18.92 30.49C16.37 31.06 13.83 29.59 13.24 27.16C12.65 24.73 14.3 22.25 16.93 21.66C19.57 21.07 22.12 22.61 22.63 25.05C23.13 27.5 21.47 29.91 18.92 30.49ZM0.23 18.88C2.76 28.16 5.29 37.44 7.82 46.71C11.08 45.81 14.36 44.97 17.65 44.18C17.2 42.33 16.76 40.49 16.32 38.65C16.33 38.53 31.74 36.87 29.45 24.27C26.1 5.95 0 18.58 0.23 18.88"/><path d="M47.85 27.96C45.29 28.31 42.92 26.62 42.54 24.15C42.17 21.69 44.01 19.37 46.65 19.02C49.3 18.67 51.68 20.42 51.97 22.9C52.26 25.37 50.41 27.62 47.85 27.96ZM45.27 8.71C36.2 9.9 30.16 17.84 31.72 25.94C33.27 34.05 41.09 39.37 49.23 38.27C57.37 37.16 63.49 29.99 62.86 21.79C62.23 13.6 54.34 7.51 45.27 8.71"/><path d="M78.05 25.35C75.48 25.45 73.27 23.56 73.13 21.08C72.99 18.6 75.03 16.47 77.69 16.37C80.35 16.26 82.56 18.23 82.61 20.71C82.67 23.19 80.63 25.25 78.05 25.35ZM63.67 7.85C64.39 16.94 65.12 26.03 65.85 35.11C66.01 34.79 92.02 40.03 92.23 19.92C92.42 0 63.48 7.5 63.67 7.85"/><path d="M109.71 25.62C107.13 25.47 105.12 23.38 105.23 20.91C105.33 18.44 107.56 16.52 110.22 16.68C112.88 16.84 114.89 19 114.7 21.46C114.52 23.93 112.28 25.77 109.71 25.62ZM110.82 6.37C101.71 5.81 94.3 12.42 94.29 20.61C94.28 28.81 100.92 35.46 109.11 35.94C117.3 36.39 124.67 30.56 125.61 22.44C126.54 14.34 119.93 6.92 110.82 6.37"/><path d="M140.19 9.41C136.55 8.87 132.9 8.39 129.24 7.98C128.15 17.75 127.05 27.52 125.96 37.3C131.96 37.96 137.96 38.8 143.92 39.82C144.5 36.47 145.07 33.13 145.64 29.78C144.48 29.59 143.32 29.39 142.16 29.21C139.56 28.79 137.73 26.47 138.08 23.98C138.79 19.12 139.49 14.26 140.19 9.41"/><path d="M162.31 33.03C159.78 32.46 158.13 30.08 158.63 27.67C159.13 25.26 161.66 23.75 164.27 24.34C166.88 24.94 168.52 27.39 167.94 29.77C167.36 32.16 164.84 33.6 162.31 33.03ZM171.61 15.53C168.29 14.72 164.96 13.96 161.62 13.25C156.23 22.13 151.12 31.12 146.3 40.23C150.41 40.96 154.51 41.77 158.6 42.67C159.5 41.03 160.42 39.39 161.34 37.76C161.41 39.63 161.48 41.51 161.54 43.38C165.61 44.3 169.67 45.3 173.72 46.38C173.3 36.13 172.6 25.85 171.61 15.53"/></svg></h1>
+    <p class="status">Coming Soon</p>
+  </section>
 
-        <!-- edge shading: keeps the sphere from reading as a flat ball -->
-        <radialGradient id="peaShade" cx="38%" cy="34%" r="72%">
-          <stop offset="60%"  stop-color="#3f7a2c" stop-opacity="0"/>
-          <stop offset="88%"  stop-color="#3f7a2c" stop-opacity=".28"/>
-          <stop offset="100%" stop-color="#2c5b1e" stop-opacity=".5"/>
-        </radialGradient>
+  <section class="panel contact" id="contact" data-panel="contact" aria-label="Contact">
+    <h1 class="contact-title">Contact</h1>
+    <p>Contact us.</p>
+    <span class="email">andrew@podolapeas.com</span>
+  </section>
+</main>
 
-        <!-- bounced light along the lower edge -->
-        <linearGradient id="peaBounce" x1="0" y1="1" x2=".3" y2="0">
-          <stop offset="0%"   stop-color="#cdeb9b" stop-opacity=".55"/>
-          <stop offset="45%"  stop-color="#cdeb9b" stop-opacity="0"/>
-        </linearGradient>
+<footer>&copy; <span id="yr">2026</span> PODOLA</footer>
 
-        <!-- one pea, drawn at radius 50 around the origin -->
-        <g id="peaShape">
-          <path d="M0-49.5 C27-49.5 49-27.5 49.5-1 C50 26 27.5 48.5 0.5 49.5 C-27 50.5 -49.5 27 -49.5 -0.5 C-49.5 -28 -27.5 -49.5 0-49.5Z"
-                fill="url(#peaFill)"/>
-          <path d="M0-49.5 C27-49.5 49-27.5 49.5-1 C50 26 27.5 48.5 0.5 49.5 C-27 50.5 -49.5 27 -49.5 -0.5 C-49.5 -28 -27.5 -49.5 0-49.5Z"
-                fill="url(#peaShade)"/>
-          <path d="M0-49.5 C27-49.5 49-27.5 49.5-1 C50 26 27.5 48.5 0.5 49.5 C-27 50.5 -49.5 27 -49.5 -0.5 C-49.5 -28 -27.5 -49.5 0-49.5Z"
-                fill="url(#peaBounce)"/>
-          <!-- hilum: the little scar where the pea met the pod -->
-          <ellipse cx="6" cy="41" rx="8" ry="3.6" fill="#5f9a3d" opacity=".45" transform="rotate(-12 6 41)"/>
-          <ellipse cx="6" cy="40" rx="8" ry="3.2" fill="#d3ecab" opacity=".18" transform="rotate(-12 6 40)"/>
-        </g>
+<script>
+  (function(){
+    var tabs=document.querySelectorAll('[data-tab]'), panels=document.querySelectorAll('[data-panel]');
+    function show(){
+      var id=location.hash==='#contact'?'contact':'home';
+      panels.forEach(function(p){p.hidden=p.dataset.panel!==id});
+      tabs.forEach(function(t){ if(t.dataset.tab===id) t.setAttribute('aria-current','page'); else t.removeAttribute('aria-current'); });
+      document.title=id==='contact'?'Contact — PODOLA':'PODOLA';
+      window.scrollTo(0,0);
+    }
+    window.addEventListener('hashchange',show); show();
+    document.getElementById('yr').textContent=new Date().getFullYear();
+  })();
 
-        <linearGradient id="gleamFill" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
-          <stop offset="50%"  stop-color="#ffffff" stop-opacity=".42"/>
-          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-        </linearGradient>
-
-        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-          <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#06180b" flood-opacity=".55"/>
-        </filter>
-
-        <filter id="blur6" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="5"/>
-        </filter>
-
-        <clipPath id="peaClip">
-          <circle cx="150" cy="152" r="44"/>
-          <circle cx="203" cy="128" r="54"/>
-          <circle cx="252" cy="155" r="42"/>
-        </clipPath>
-      </defs>
-
-      <!-- pod outline -->
-      <path class="ring"
-            d="M112 196 C86 122 148 66 208 66 C274 66 307 112 297 159 C289 198 248 212 212 205"
-            fill="none" stroke="var(--ring)" stroke-width="3.2" stroke-linecap="round" opacity=".85"/>
-
-      <!-- peas -->
-      <g filter="url(#soft)">
-        <g class="pea pea-a">
-          <use href="#peaShape" transform="translate(150 152) rotate(-14) scale(.84 .81)"/>
-          <ellipse class="spark" cx="134" cy="134" rx="12" ry="7.5" fill="#ffffff" opacity=".5" filter="url(#blur6)" transform="rotate(-30 134 134)"/>
-        </g>
-        <g class="pea pea-c">
-          <use href="#peaShape" transform="translate(252 155) rotate(22) scale(.8 .78)"/>
-          <ellipse class="spark spark-2" cx="237" cy="140" rx="11" ry="7" fill="#ffffff" opacity=".45" filter="url(#blur6)" transform="rotate(-30 237 140)"/>
-        </g>
-        <g class="pea pea-b">
-          <use href="#peaShape" transform="translate(203 128) rotate(6) scale(1.04 1)"/>
-          <ellipse class="spark" cx="184" cy="106" rx="15" ry="9.5" fill="#ffffff" opacity=".55" filter="url(#blur6)" transform="rotate(-30 184 106)"/>
-        </g>
-      </g>
-
-      <!-- gleam sweeping across the peas -->
-      <g clip-path="url(#peaClip)">
-        <g transform="rotate(16 200 140)">
-          <rect class="gleam" x="0" y="-40" width="52" height="340" fill="url(#gleamFill)"/>
-        </g>
-      </g>
-    </svg>
-
-    <div>
-      <h1 class="wordmark">PODOLA</h1>
-      <span class="status">COMING SOON</span>
-    </div>
-
-  </main>
-
-  <p class="contact">CONTACT — ANDREW@PODOLAPEAS.COM</p>
-
+</script>
 </body>
 </html>
