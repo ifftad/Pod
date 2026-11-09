@@ -69,9 +69,11 @@
   html,body,a,button,.tab,.email{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2212.5%22%20fill%3D%22%23a0bf4e%22%20stroke%3D%22%23212f17%22%20stroke-width%3D%222%22/%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2210.5%22%20rx%3D%223.6%22%20ry%3D%222.4%22%20fill%3D%22%23f5e9e5%22%20transform%3D%22rotate%28-30%2011.5%2010.5%29%22/%3E%3C/svg%3E") 16 16, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC70lEQVR4nGNgGAUkAjldfkEFPVEPRX3RHEU90RYg3SyvK5qtqCPmqqQkyE8re5nk9USDFfTF9ynqi/1W1Bf/jx0D5fTE9ijoigUA9TBSxWZ5HTEroKGXYJYoG0r8s/FV+h+crvM/scLof0K50f+gNJ3/1kAxkBxMnYK+2HlZHRETyizXE6+G+VjfXvZ/Tov5/6mbPf8v2O+HFU/d5Pk/q8kcpPYfLEQU9EXLybNcV3wS1Df/YosN/s/e6YPTYnQ8e6f3/5giA7BeaGj0kWQ5UEMdSKOKscS/ysm2cIOXHoz4v+Vk4f+Vh+OJcghIr7IRNFr0xEqJslxRV9QO6IA/INdXT7UDG7TicOz/67c2/v/y4vH/ry+fgunDF3qJckRpvzU4JEBmyhmIWROynxGUeEAuji02BBuw8nDc/1ePL4EtRsZPHhwnOkpAUQiOCj2xswz4cgcw0UWCFBo4yMLj/MrN1RiWg/CVG6uIdsCsHd4gM8FRIa8vFoQ7+PXEdoMUZTWZwTU/fXgSw/JXjy+Co4VYB4AwyExogtyJ1XJQKQaKJ2VD8X/TtiCy2pELfcA4fwKP++u31pNsOTiLArOvkgEoV4j9ElEX4cVwgIKOiAPIhbb+yhiaVx1J+L/heA44F5BqMTIGmQ2yQ05f1AYz/kHlOVAyJFOXIkvwYZDZ0MSYiRn/wEoFJAkqXmnlAGjh9B9r6TjgDhjwKMCXCKmF8SZCXNmQWphgNgSnAywFEbUwwYIIHA16IhGwonjOLuKrX0IYVD0jFcWBOB3AgFQZxZUYUs0BoIqNqMoIHA1YqmNKcBmJ1TEkKnA0SEjFZDVI4I7QE5+IaJIZkpQmQFU5tA0Aa5L1kmQ5DADbB1WwRqmBI6RROg1foxQol92M1ijVFSsjy3K4I3A0y0MydP/HFBqAMaiJTpNmORJgArVkQJ0OAh2TX6CyREFX3J+BWh0TdKBgICAAtMgN1DUDBS8Ig+oROT1xZyEVIT6aWDqsAQCrm13vAfFFagAAAABJRU5ErkJggg==") 16 16, auto}
 
   .hero-logo{width:min(560px,92%)}
-  /* hover a hole with the mouse: a pea sits in it; after you leave it stays 1s, then fades over .5s */
-  .hole-pea{opacity:0;transition:opacity .5s ease;pointer-events:none}
-  .hole-pea.on{opacity:1;transition:none}  .status{
+  /* hover a pea spot with the mouse: a pea sits in it; after you leave it stays 1.5s,
+     then softly fades away over .7s (fades, shrinks a touch and blurs slightly) */
+  .hole-pea{opacity:0;transform:scale(.85);filter:blur(1.2px);transform-box:fill-box;transform-origin:center;
+    transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1),filter .7s ease;pointer-events:none}
+  .hole-pea.on{opacity:1;transform:none;filter:none;transition:none}  .status{
     margin-top:clamp(28px,5vw,44px);
     font-weight:700;font-size:14px;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;
   }
@@ -135,17 +137,20 @@
 
 </script>
 <script>
-  /* Pea cursor sized to match the round holes in the logo (follows the logo's size on screen). */
+  /* 1) Pea cursor sized to match the round holes in the big logo (follows the logo's size).
+     2) Hover a "pea spot" (the round holes, plus the curve inside the L) in either logo:
+        a pea locks into it; after the mouse leaves, it stays 1.5s, then fades away over 0.7s. */
   (function(){
-    var G={"w": 173.72, "holes": [[17.89, 26.065, 5.117], [47.215, 23.49, 4.932], [77.83, 20.855, 4.718], [110.005, 21.145, 4.755], [163.325, 28.675, 5.06]]}, svg=document.querySelector('.hero-logo svg');
-    if(!svg) return;
-    var PEA='#a0bf4e', FOREST='#212f17', SHINE='#f5e9e5';
-    var avgR=G.holes.reduce(function(s,h){return s+h[2]},0)/G.holes.length;
+    var G={"hero": {"w": 173.72, "spots": [[17.89, 26.065, 5.117], [47.215, 23.49, 4.932], [77.83, 20.855, 4.718], [110.005, 21.145, 4.755], [142.299, 24.985, 4.78], [163.325, 28.675, 5.06]]}, "header": {"w": 265.82, "spots": [[22.705, 28.315, 7.195], [66.835, 32.475, 7.195], [113.415, 32.475, 7.195], [162.105, 32.445, 7.195], [211.553, 33.097, 7.34], [243.645, 32.445, 7.195]]}}, hero=document.querySelector('.hero-logo svg'), header=document.querySelector('.brand svg');
+    var NS='http://www.w3.org/2000/svg', PEA='#a0bf4e', FOREST='#212f17', SHINE='#f5e9e5';
+    var HOLD=1500, WIGGLE_PX=8;
+    var holeR=G.hero.spots.filter(function(s,i){return i!==4}).map(function(s){return s[2]});
+    var avgR=holeR.reduce(function(a,b){return a+b},0)/holeR.length;
 
     function setCursor(){
-      var w=svg.getBoundingClientRect().width;
+      var w=hero?hero.getBoundingClientRect().width:0;
       if(!w) w=Math.min(560,0.92*(document.documentElement.clientWidth-32));   // logo hidden (Contact tab): same size rule as the CSS
-      var d=Math.max(14,Math.min(64,Math.round(2*avgR*w/G.w)));   // hole diameter in screen pixels
+      var d=Math.max(14,Math.min(64,Math.round(2*avgR*w/G.hero.w)));   // hole diameter in screen pixels
       var r=d/2, sw=Math.max(1.5,d/16);
       var s='<svg xmlns="http://www.w3.org/2000/svg" width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'">'+
         '<circle cx="'+r+'" cy="'+r+'" r="'+(r-sw/2)+'" fill="'+PEA+'" stroke="'+FOREST+'" stroke-width="'+sw+'"/>'+
@@ -157,30 +162,34 @@
     setCursor(); window.addEventListener('resize',setCursor);
     window.addEventListener('hashchange',function(){setTimeout(setCursor,0)});
 
-    /* Hover a hole: a pea (same look as the cursor) locks into it. When the mouse leaves
-       that hole, the pea stays 1 second, then fades back to the background over 0.5s. */
-    var NS='http://www.w3.org/2000/svg', HOLD=1000, WIGGLE_PX=4;
-    var peas=G.holes.map(function(h){
-      var cx=h[0], cy=h[1], r=h[2], sw=Math.max(r/8,0.5);
-      var g=document.createElementNS(NS,'g'); g.setAttribute('class','hole-pea');
-      g.innerHTML='<circle cx="'+cx+'" cy="'+cy+'" r="'+(r-sw/2)+'" fill="'+PEA+'" stroke="'+FOREST+'" stroke-width="'+sw+'"/>'+
-        '<ellipse cx="'+(cx-r*0.32)+'" cy="'+(cy-r*0.38)+'" rx="'+(r*0.26)+'" ry="'+(r*0.17)+'" fill="'+SHINE+'" transform="rotate(-30 '+(cx-r*0.32)+' '+(cy-r*0.38)+')"/>';
-      svg.appendChild(g);
-      return {g:g, over:false, timer:null};
-    });
-    function enter(p){ clearTimeout(p.timer); p.over=true; p.g.classList.add('on'); }
-    function leave(p){ if(!p.over) return; p.over=false;
-      p.timer=setTimeout(function(){ p.g.classList.remove('on'); }, HOLD); }
-    svg.addEventListener('pointermove',function(e){
-      if(e.pointerType!=='mouse') return;
-      var pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
-      var m=svg.getScreenCTM(); if(!m) return;
-      var p=pt.matrixTransform(m.inverse()), wiggle=WIGGLE_PX/m.a;   // a few screen pixels of slack
-      G.holes.forEach(function(h,i){
-        if(Math.hypot(p.x-h[0],p.y-h[1])<=h[2]+wiggle) enter(peas[i]); else leave(peas[i]);
+    function peaSpots(svg, data){
+      if(!svg) return;
+      var area=svg.parentNode;   // listen on the wrapper so the wiggle room reaches past the logo's edge
+      var peas=data.spots.map(function(h){
+        var cx=h[0], cy=h[1], r=h[2], sw=Math.max(r/8,0.5);
+        var g=document.createElementNS(NS,'g'); g.setAttribute('class','hole-pea');
+        g.innerHTML='<circle cx="'+cx+'" cy="'+cy+'" r="'+(r-sw/2)+'" fill="'+PEA+'" stroke="'+FOREST+'" stroke-width="'+sw+'"/>'+
+          '<ellipse cx="'+(cx-r*0.32)+'" cy="'+(cy-r*0.38)+'" rx="'+(r*0.26)+'" ry="'+(r*0.17)+'" fill="'+SHINE+'" transform="rotate(-30 '+(cx-r*0.32)+' '+(cy-r*0.38)+')"/>';
+        svg.appendChild(g);
+        return {g:g, over:false, timer:null};
       });
-    });
-    svg.addEventListener('pointerleave',function(){ peas.forEach(leave); });
+      svg.style.overflow='visible';
+      function enter(p){ clearTimeout(p.timer); p.over=true; p.g.classList.add('on'); }
+      function leave(p){ if(!p.over) return; p.over=false;
+        p.timer=setTimeout(function(){ p.g.classList.remove('on'); }, HOLD); }
+      area.addEventListener('pointermove',function(e){
+        if(e.pointerType!=='mouse') return;
+        var m=svg.getScreenCTM(); if(!m) return;
+        var pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
+        var p=pt.matrixTransform(m.inverse()), wiggle=WIGGLE_PX/m.a;   // wiggle room in screen pixels
+        data.spots.forEach(function(h,i){
+          if(Math.hypot(p.x-h[0],p.y-h[1])<=h[2]+wiggle) enter(peas[i]); else leave(peas[i]);
+        });
+      });
+      area.addEventListener('pointerleave',function(){ peas.forEach(leave); });
+    }
+    peaSpots(hero, G.hero);
+    peaSpots(header, G.header);
   })();
 </script>
 </body>
