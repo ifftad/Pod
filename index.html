@@ -68,8 +68,7 @@
      needed (a check would wrongly hide it on touchscreen laptops). PNG is the backup image. */
   html,body,a,button,.tab,.email{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2212.5%22%20fill%3D%22%23a0bf4e%22%20stroke%3D%22%23212f17%22%20stroke-width%3D%222%22/%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2210.5%22%20rx%3D%223.6%22%20ry%3D%222.4%22%20fill%3D%22%23f5e9e5%22%20transform%3D%22rotate%28-30%2011.5%2010.5%29%22/%3E%3C/svg%3E") 16 16, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC70lEQVR4nGNgGAUkAjldfkEFPVEPRX3RHEU90RYg3SyvK5qtqCPmqqQkyE8re5nk9USDFfTF9ynqi/1W1Bf/jx0D5fTE9ijoigUA9TBSxWZ5HTEroKGXYJYoG0r8s/FV+h+crvM/scLof0K50f+gNJ3/1kAxkBxMnYK+2HlZHRETyizXE6+G+VjfXvZ/Tov5/6mbPf8v2O+HFU/d5Pk/q8kcpPYfLEQU9EXLybNcV3wS1Df/YosN/s/e6YPTYnQ8e6f3/5giA7BeaGj0kWQ5UEMdSKOKscS/ysm2cIOXHoz4v+Vk4f+Vh+OJcghIr7IRNFr0xEqJslxRV9QO6IA/INdXT7UDG7TicOz/67c2/v/y4vH/ry+fgunDF3qJckRpvzU4JEBmyhmIWROynxGUeEAuji02BBuw8nDc/1ePL4EtRsZPHhwnOkpAUQiOCj2xswz4cgcw0UWCFBo4yMLj/MrN1RiWg/CVG6uIdsCsHd4gM8FRIa8vFoQ7+PXEdoMUZTWZwTU/fXgSw/JXjy+Co4VYB4AwyExogtyJ1XJQKQaKJ2VD8X/TtiCy2pELfcA4fwKP++u31pNsOTiLArOvkgEoV4j9ElEX4cVwgIKOiAPIhbb+yhiaVx1J+L/heA44F5BqMTIGmQ2yQ05f1AYz/kHlOVAyJFOXIkvwYZDZ0MSYiRn/wEoFJAkqXmnlAGjh9B9r6TjgDhjwKMCXCKmF8SZCXNmQWphgNgSnAywFEbUwwYIIHA16IhGwonjOLuKrX0IYVD0jFcWBOB3AgFQZxZUYUs0BoIqNqMoIHA1YqmNKcBmJ1TEkKnA0SEjFZDVI4I7QE5+IaJIZkpQmQFU5tA0Aa5L1kmQ5DADbB1WwRqmBI6RROg1foxQol92M1ijVFSsjy3K4I3A0y0MydP/HFBqAMaiJTpNmORJgArVkQJ0OAh2TX6CyREFX3J+BWh0TdKBgICAAtMgN1DUDBS8Ig+oROT1xZyEVIT6aWDqsAQCrm13vAfFFagAAAABJRU5ErkJggg==") 16 16, auto}
 
-  .hero-logo{width:min(560px,92%)}
-  .status{
+  .hero-logo{width:min(560px,92%)}  .status{
     margin-top:clamp(28px,5vw,44px);
     font-weight:700;font-size:14px;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;
   }
@@ -105,7 +104,7 @@
 <main>
   <section class="panel" id="home" data-panel="home" aria-label="Home">
     <h1 class="hero-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173.72 46.71" fill="#212f17" role="img" aria-label="PODOLA"><path d="M18.92 30.49C16.37 31.06 13.83 29.59 13.24 27.16C12.65 24.73 14.3 22.25 16.93 21.66C19.57 21.07 22.12 22.61 22.63 25.05C23.13 27.5 21.47 29.91 18.92 30.49ZM0.23 18.88C2.76 28.16 5.29 37.44 7.82 46.71C11.08 45.81 14.36 44.97 17.65 44.18C17.2 42.33 16.76 40.49 16.32 38.65C16.33 38.53 31.74 36.87 29.45 24.27C26.1 5.95 0 18.58 0.23 18.88"/><path d="M47.85 27.96C45.29 28.31 42.92 26.62 42.54 24.15C42.17 21.69 44.01 19.37 46.65 19.02C49.3 18.67 51.68 20.42 51.97 22.9C52.26 25.37 50.41 27.62 47.85 27.96ZM45.27 8.71C36.2 9.9 30.16 17.84 31.72 25.94C33.27 34.05 41.09 39.37 49.23 38.27C57.37 37.16 63.49 29.99 62.86 21.79C62.23 13.6 54.34 7.51 45.27 8.71"/><path d="M78.05 25.35C75.48 25.45 73.27 23.56 73.13 21.08C72.99 18.6 75.03 16.47 77.69 16.37C80.35 16.26 82.56 18.23 82.61 20.71C82.67 23.19 80.63 25.25 78.05 25.35ZM63.67 7.85C64.39 16.94 65.12 26.03 65.85 35.11C66.01 34.79 92.02 40.03 92.23 19.92C92.42 0 63.48 7.5 63.67 7.85"/><path d="M109.71 25.62C107.13 25.47 105.12 23.38 105.23 20.91C105.33 18.44 107.56 16.52 110.22 16.68C112.88 16.84 114.89 19 114.7 21.46C114.52 23.93 112.28 25.77 109.71 25.62ZM110.82 6.37C101.71 5.81 94.3 12.42 94.29 20.61C94.28 28.81 100.92 35.46 109.11 35.94C117.3 36.39 124.67 30.56 125.61 22.44C126.54 14.34 119.93 6.92 110.82 6.37"/><path d="M140.19 9.41C136.55 8.87 132.9 8.39 129.24 7.98C128.15 17.75 127.05 27.52 125.96 37.3C131.96 37.96 137.96 38.8 143.92 39.82C144.5 36.47 145.07 33.13 145.64 29.78C144.48 29.59 143.32 29.39 142.16 29.21C139.56 28.79 137.73 26.47 138.08 23.98C138.79 19.12 139.49 14.26 140.19 9.41"/><path d="M162.31 33.03C159.78 32.46 158.13 30.08 158.63 27.67C159.13 25.26 161.66 23.75 164.27 24.34C166.88 24.94 168.52 27.39 167.94 29.77C167.36 32.16 164.84 33.6 162.31 33.03ZM171.61 15.53C168.29 14.72 164.96 13.96 161.62 13.25C156.23 22.13 151.12 31.12 146.3 40.23C150.41 40.96 154.51 41.77 158.6 42.67C159.5 41.03 160.42 39.39 161.34 37.76C161.41 39.63 161.48 41.51 161.54 43.38C165.61 44.3 169.67 45.3 173.72 46.38C173.3 36.13 172.6 25.85 171.61 15.53"/></svg></h1>
-    <p class="status">Coming Soon</p>
+    <p class="status" id="status">Coming Soon</p>
   </section>
 
   <section class="panel contact" id="contact" data-panel="contact" aria-label="Contact">
@@ -131,6 +130,30 @@
     document.getElementById('yr').textContent=new Date().getFullYear();
   })();
 
+</script>
+<script>
+  /* Pea cursor sized to match the round holes in the logo (follows the logo's size on screen). */
+  (function(){
+    var G={"w": 173.72, "holes": [[17.89, 26.065, 5.117], [47.215, 23.49, 4.932], [77.83, 20.855, 4.718], [110.005, 21.145, 4.755], [163.325, 28.675, 5.06]]}, svg=document.querySelector('.hero-logo svg');
+    if(!svg) return;
+    var PEA='#a0bf4e', FOREST='#212f17', SHINE='#f5e9e5';
+    var avgR=G.holes.reduce(function(s,h){return s+h[2]},0)/G.holes.length;
+
+    function setCursor(){
+      var w=svg.getBoundingClientRect().width;
+      if(!w) w=Math.min(560,0.92*(document.documentElement.clientWidth-32));   // logo hidden (Contact tab): same size rule as the CSS
+      var d=Math.max(14,Math.min(64,Math.round(2*avgR*w/G.w)));   // hole diameter in screen pixels
+      var r=d/2, sw=Math.max(1.5,d/16);
+      var s='<svg xmlns="http://www.w3.org/2000/svg" width="'+d+'" height="'+d+'" viewBox="0 0 '+d+' '+d+'">'+
+        '<circle cx="'+r+'" cy="'+r+'" r="'+(r-sw/2)+'" fill="'+PEA+'" stroke="'+FOREST+'" stroke-width="'+sw+'"/>'+
+        '<ellipse cx="'+(r*0.68)+'" cy="'+(r*0.62)+'" rx="'+(r*0.26)+'" ry="'+(r*0.17)+'" fill="'+SHINE+'" transform="rotate(-30 '+(r*0.68)+' '+(r*0.62)+')"/></svg>';
+      var url='url("data:image/svg+xml,'+encodeURIComponent(s)+'") '+Math.round(r)+' '+Math.round(r)+', auto';
+      var st=document.getElementById('pea-cursor')||document.head.appendChild(Object.assign(document.createElement('style'),{id:'pea-cursor'}));
+      st.textContent='html,body,a,button,.tab,.email{cursor:'+url+'}';
+    }
+    setCursor(); window.addEventListener('resize',setCursor);
+    window.addEventListener('hashchange',function(){setTimeout(setCursor,0)});
+  })();
 </script>
 </body>
 </html>
